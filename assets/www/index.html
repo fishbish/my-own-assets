@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+        <link href="MOAStyle.css" rel="stylesheet" />
+        
+        <script src="cordova-2.0.0.js"></script>
+        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+        <script src="MOAScript.js"></script>
+        <script src="MOAdba.js"></script>
+    </head>
+    <body>
+    	<div data-role="page" id="tabstrip-splashScrn" >
+			<div data-role="content">
+                <ul data-role="listview" data-style="inset">
+					<img alt="moa" src="Images/MOASplash.png" width="100%">
+				</ul>
+			</div>
+    	</div>
+    	
+    	<div data-role="page" id="tabstrip-logIn" >
+    		<div data-role="header"  data-position="fixed">
+				<h1>Log In</h1>
+			</div>
+			<div data-role="content">
+                <ul data-role="listview" data-style="inset">
+					<li>
+                        <label for="username">User name:</label>
+                        <input type="text" value="" id="username" />
+                    </li>
+                    <li>
+                        <label for="password">Password:</label>
+                        <input type="password" value="" id="password" />
+                    </li>
+                   	<!-- <a href="#tabstrip-assetsHome" data-transition="fade" data-role="button" >Log In</a> -->
+                   	<button id="logInButton">Log In</button>
+                   	<a href="#tabstrip-registration" data-transition="pop" data-role="button" >Register</a>
+				</ul>
+			</div>
+    	</div>
+    	
+    	<div data-role="page" id="tabstrip-registration" data-add-back-btn="true">
+    		<div data-role="header"  data-position="fixed">
+				<h1>Register for MOA</h1>
+			</div>
+			<div data-role="content">
+                <ul data-role="listview" data-style="inset">
+					<li>
+                        <label for="usernameReg" id="usernameRegLab">User name:</label>
+                        <input type="text" value="" id="usernameReg" />
+                    </li>
+                    <li>
+                        <label for="emailReg">Email:</label>
+                        <input type="email" value="" id="emailReg" />
+                    </li>
+                    <li>
+                        <label for="passwordReg">Password:</label>
+                        <input type="password" value="" id="passwordReg" />
+                    </li>
+                    <li>
+                        <label for="cnfPasswordReg">Confirm password:</label>
+                        <input type="password" value="" id="cnfPasswordReg" />
+                    </li>
+                   	<button id="regButton">Register</button>
+				</ul>
+			</div>
+    	</div>
+    	
+    	<div data-role="page" id="tabstrip-dashboard" >
+    		<div data-role="header"  data-position="fixed">
+				<h1>Dashboard</h1>
+			</div>
+			<div data-role="content">
+                <ul data-role="listview" data-style="inset">
+					<li>
+                        <label for="totValAssets" >Total Value of Assets:</label>
+                        <label id="totValAssets" >R 250 000</label>
+                    </li>
+                    <li>
+                        <label for="totMntIns">Monthly Ins. Prems:</label>
+                        <label id="totMntIns">R  11 000</label>
+                    </li>
+                    <li>
+                        <label for="totMntIns">Total Depreciation:</label>
+                        <label id="totMntIns">R  8 500</label>
+                    </li>
+                   	<button id="claimButton">Claim Insurance</button>
+                   	<a href="#tabstrip-editAssetDetails" onclick="sessionStorage.assetId = 0" data-role="button" data-icon="add" >Add Asset</a>
+				</ul>
+			</div>
+			
+			<div data-role="footer" data-id="moaFooter" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                    	<li><a href="#tabstrip-dashboard" data-icon="home">Dashboard</a></li>
+                        <li><a href="#tabstrip-assetsHome" data-icon="gear">Assets</a></li>
+                        <li><a href="#tabstrip-insurance" data-icon="info">Insurance</a></li>
+                        <li><a href="#tabstrip-locations" data-icon="star">Locations</a></li>
+                    </ul>
+                </div>
+            </div>
+    	</div>
+    	
+        <div data-role="page" id="tabstrip-assetsHome" >
+            <div data-role="header"  data-position="fixed">
+				<h1>Asset Categories</h1>
+			</div>
+            <div>
+                <ul id="assetCatList" data-role="listview" data-theme="b" >
+                </ul>
+            </div>
+            <button id="clearDbButton">Clear Assets</button>
+            
+            <div data-role="footer" data-id="moaFooter" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                    	<li><a href="#tabstrip-dashboard" data-icon="home">Dashboard</a></li>
+                        <li><a href="#tabstrip-assetsHome" data-icon="gear">Assets</a></li>
+                        <li><a href="#tabstrip-insurance" data-icon="info">Insurance</a></li>
+                        <li><a href="#tabstrip-locations" data-icon="star">Locations</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div data-role="page" id="tabstrip-insurance" >
+            <h1>Insurance</h1>
+            <p>
+                Manage Insurance
+            </p>
+            <div data-role="footer" data-id="moaFooter" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                    	<li><a href="#tabstrip-dashboard" data-icon="home">Dashboard</a></li>
+                        <li><a href="#tabstrip-assetsHome" data-icon="gear">Assets</a></li>
+                        <li><a href="#tabstrip-insurance" data-icon="info">Insurance</a></li>
+                        <li><a href="#tabstrip-locations" data-icon="star">Locations</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div data-role="page" id="tabstrip-locations" >
+            <h1>Locations</h1>
+            <p>
+                Manage locations
+            </p>
+            <div data-role="footer" data-id="moaFooter" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                    	<li><a href="#tabstrip-dashboard" data-icon="home">Dashboard</a></li>
+                        <li><a href="#tabstrip-assetsHome" data-icon="gear">Assets</a></li>
+                        <li><a href="#tabstrip-insurance" data-icon="info">Insurance</a></li>
+                        <li><a href="#tabstrip-locations" data-icon="star">Locations</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div data-role="page" id="tabstrip-assets" >
+            <div data-role="header" data-position="fixed">
+				<h1>Assets</h1>
+			</div>
+            <div>
+                <ul id="assetsList" data-role="listview" data-theme="b" >
+                </ul>
+            </div>
+            <a href="#tabstrip-editAssetDetails" onclick="sessionStorage.assetId = 0" data-role="button" data-icon="add" >Add Asset</a>
+            
+            <div data-role="footer" data-id="moaFooter" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#tabstrip-assetsHome" data-icon="gear">Assets</a></li>
+                        <li><a href="#tabstrip-insurance" data-icon="info">Insurance</a></li>
+                        <li><a href="#tabstrip-locations" data-icon="star">Locations</a></li>
+                        <li><a href="#tabstrip-investments" data-icon="home">Investments</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div data-role="page" id="tabstrip-editAssetDetails" data-add-back-btn="true">
+            <div data-role="header" data-position="fixed">
+				<h1>Asset Details</h1>
+			</div>
+            <div data-role="content">
+                <ul data-role="listview" data-style="inset">
+                    <li>
+                        <label for="idIn">ID</label>
+                        <label id="idIn"></label>
+                    </li>
+                    <li>
+                        <label for="descIn">Description</label>
+                        <input type="text" value="" id="descIn" />
+                    </li>
+                    <li>
+                        <label for="categoryIn">Category</label>
+                        <select id="categoryIn">
+                        	<option value="1">Electronic Equipment</option>
+                        	<option value="2">Jewellery</option>
+                        	<option value="3">Motor Vehicles</option>
+                        	<option value="5">Cell Phones</option>
+                        	<option value="6">Sundry</option>
+                        	<option value="7">Clothing</option>
+                        	<option value="8">DVD Movies</option>
+                        	<option value="9">Furniture</option>
+                        	<option value="10">Cameras</option>
+                        	<option value="11">Sports Equipment</option>
+                        	<option value="12">Printers and Copiers</option>
+                        	<option value="13">Computer Equipment</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="makeIn">Make</label>
+                        <input type="text" value="" id="makeIn" />
+                    </li>
+                    <li>
+                        <label for="modelIn">Model</label>
+                        <input type="text" value="" id="modelIn"/>
+                    </li>
+                    <li>
+                        <label for="priceIn">Colour</label>
+                        <input type="text" value="" id="priceIn" />
+                    </li>
+                    <li>
+                        <label for="purchLocIn">Purchase Location</label>
+                        <input type="text" value="" id="purchLocIn" />
+                    </li>
+                    <li>
+                        <label for="purchMethIn">Purchase Method</label>
+                        <input type="text" value="" id="purchMethIn" />
+                    </li>
+                    <li>
+                        <label for="purchDateIn">Purchase Date</label>
+                        <input type="text" value="" id="purchDateIn" />
+                    </li>
+                </ul>
+            </div>
+            
+        	<label for="imageIn">Asset Photo</label>
+           	<img style="display:none;" id="imageIn" src="" />
+   			<p id="imgSrc"></p>
+   			<button id="takePhotoButton">Asset Photo</button>
+   			
+   			<label for="invoiceIn">Invoice Photo</label>
+           	<img style="display:none;" id="invoiceIn" src="" />
+           	<button id="takeInvPhotoButton">Invoice Photo</button>
+           	
+            <div>
+                <button id="editSaveLocalButton">Save</button>
+                <p id="outputSave">Result:</p>
+                <p id="assetCount">Count:</p>
+            </div>
+            <div data-role="footer" data-id="moaFooter">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#tabstrip-assetsHome" data-icon="gear">Assets</a></li>
+                        <li><a href="#tabstrip-insurance" data-icon="info">Insurance</a></li>
+                        <li><a href="#tabstrip-locations" data-icon="star">Locations</a></li>
+                        <li><a href="#tabstrip-investments" data-icon="home">Investments</a></li>
+                    </ul>
+                </div>
+            </div>  
+        </div>
+    </body>
+</html>
