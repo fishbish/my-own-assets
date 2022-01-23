@@ -1,8 +1,0 @@
-<resources>
-
-    <string name="app_name">MOA</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="menu_settings">Settings</string>
-    <string name="title_activity_mo">MOA</string>
-
-</resources>
